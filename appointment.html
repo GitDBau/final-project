@@ -11,15 +11,18 @@
     </a>
     <div class="feature-card">
         <h1 class="title">Book an Appointment</h1>
-        <form action="/submit-appointment" method="POST">
+        <form action="https://api.web3forms.com/submit" method="POST">
+            
+            <input type="hidden" name="access_key" value="a50a4fb4-9f71-445f-8d09-b2f6012f1229">
+
             <div class="form-row">
                 <div class="form-group">
                     <label>Pet Name:</label>
-                    <input type="text" placeholder="Enter Pet's Name" required>
+                    <input type="text" name="Pet_Name" placeholder="Enter Pet's Name" required>
                 </div>
                 <div class="form-group">
                     <label>Service Type:</label>
-                    <select>
+                    <select name="Service_Type">
                         <option>Check-up</option>
                         <option>Vaccination</option>
                         <option>Grooming</option>
@@ -30,18 +33,20 @@
             <div class="form-row">
                 <div class="form-group">
                     <label>Preferred Date:</label>
-                    <input type="date" required>
+                    <input type="date" name="Appointment_Date" required>
                 </div>
                 <div class="form-group">
                     <label>Preferred Time:</label>
-                    <input type="time" required>
+                    <input type="time" name="Appointment_Time" required>
                 </div>
             </div>
             <div class="form-group">
                 <label>Additional Notes:</label>
-                <textarea rows="4" placeholder="Describe any concerns..."></textarea>
+                <textarea name="Notes" rows="4" placeholder="Describe any concerns..."></textarea>
             </div>
-            <button type="submit" class="submit-btn"><span class="btn-front">CONFIRM APPOINTMENT</span></button>
+            <button type="submit" class="submit-btn">
+                <span class="btn-front">CONFIRM APPOINTMENT</span>
+            </button>
         </form>
     </div>
 </div>
