@@ -23,11 +23,27 @@
                 <div class="dropbtn">
                     <img class="profbutton" src="profbutton.png" alt="Profile"/>
                 </div>
-                <div class="dropdown-content">
-                    <a href="loginform.html">Login</a>
+                <div id="dropdown-menu" class="dropdown-content">
+                    <a href="loginform.html" id="auth-link">Login</a>
                     <a href="profile.html">Profile</a>
                 </div>
             </li>
+
+            <script>
+                // Check if user is logged in
+                const authLink = document.getElementById('auth-link');
+                const isLoggedIn = localStorage.getItem('isLoggedIn');
+
+                if (isLoggedIn === 'true') {
+                    authLink.innerText = 'Logout';
+                    authLink.href = '#'; // Don't go to login page
+                    
+                    authLink.onclick = function() {
+                        localStorage.removeItem('isLoggedIn'); // Clear login state
+                        window.location.reload(); // Refresh to show "Login" again
+                    };
+                }
+            </script>
         </ul>
     </nav>
     <main></main>

@@ -46,11 +46,10 @@ app.post('/api/signup', async (req, res) => {
     }
 });
 
-// --- UPDATED LOGIN ROUTE ---
+// --- UPDATED LOGIN ROUTE in api/index.js ---
 app.post('/api/login', async (req, res) => {
     try {
-        await connectToDatabase(); // Force it to wait for DB
-        
+        await connectToDatabase();
         const { username, password } = req.body;
         const user = await User.findOne({ email: username });
         
@@ -59,9 +58,15 @@ app.post('/api/login', async (req, res) => {
         const isMatch = await bcrypt.compare(password, user.password);
         if (!isMatch) return res.send("Incorrect password.");
 
-        res.redirect('/index.html');
+        // Instead of a plain redirect, we send an HTML page that sets the login state
+        res.send(`
+            <script>
+                localStorage.setItem('isLoggedIn', 'true');
+                window.location.href = '/index.html';
+            </script>
+        `);
     } catch (err) {
-        res.status(500).send("Login Error: " + err.message);
+        res.status(500).send("Login Error");
     }
 });
 
