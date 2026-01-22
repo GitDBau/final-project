@@ -103,4 +103,34 @@ SUN:         CLOSED           </pre></li>
     </div>
 </footer>
 </body>
+<script>
+    const authLink = document.getElementById('auth-link');
+    const isLoggedIn = localStorage.getItem('isLoggedIn');
+
+    // 1. Toggle Login/Logout Text
+    if (isLoggedIn === 'true') {
+        authLink.innerText = 'Logout';
+        authLink.href = '#'; 
+        
+        authLink.onclick = function() {
+            localStorage.removeItem('isLoggedIn');
+            // Use replace instead of href to kill the history entry
+            window.location.replace('loginform.html'); 
+        };
+    }
+
+    // 2. Prevent "Back" button from returning to protected state
+    // If the user is on index.html but isLoggedIn is missing, kick them to login
+    if (!isLoggedIn && window.location.pathname.includes('index.html')) {
+        window.location.replace('loginform.html');
+    }
+
+    // 3. Clear History state to prevent back-navigation
+    if (isLoggedIn === 'true') {
+        window.history.pushState(null, null, window.location.href);
+        window.onpopstate = function () {
+            window.history.go(1);
+        };
+    }
+</script>
 </html>

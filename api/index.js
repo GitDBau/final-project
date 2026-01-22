@@ -62,7 +62,8 @@ app.post('/api/login', async (req, res) => {
         res.send(`
             <script>
                 localStorage.setItem('isLoggedIn', 'true');
-                window.location.href = '/index.html';
+                // .replace() removes the login page from the back-button history
+                window.location.replace('/index.html'); 
             </script>
         `);
     } catch (err) {
