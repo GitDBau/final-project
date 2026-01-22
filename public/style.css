@@ -239,3 +239,43 @@ h3.soc {
     transition-duration: 0.4s;
 }
 
+.dropdown {
+    position: relative;
+    display: inline-block;
+}
+
+/* Style for the hidden menu */
+.dropdown-content {
+    display: none;
+    position: absolute;
+    right: 0; /* Aligns menu to the right of the button */
+    background-color: #1e2a36; /* Matches your navbar color */
+    min-width: 120px;
+    box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+    z-index: 100;
+    border-radius: 8px;
+    overflow: hidden;
+    margin-top: 5px;
+}
+
+/* Links inside the dropdown */
+.dropdown-content a {
+    color: white;
+    padding: 12px 16px;
+    text-decoration: none;
+    display: block;
+    font-family: calibri, sans-serif;
+    font-size: 14px;
+    text-align: left;
+}
+
+/* Change color on hover */
+.dropdown-content a:hover {
+    background-color: #b7d6ff;
+    color: #294158;
+}
+
+/* Show the menu when hovering over the parent li */
+.dropdown:hover .dropdown-content {
+    display: block;
+}
